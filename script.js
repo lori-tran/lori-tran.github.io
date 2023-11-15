@@ -1,5 +1,5 @@
-let currentPage = 0;
-const totalPages = 5; // Update with the actual number of pages
+let currentPage = 1;
+const totalPages = 3; // Update with the actual number of pages
 const book = document.getElementById('book');
 const pageNumberElement = document.getElementById('page-number');
 
@@ -17,8 +17,8 @@ document.addEventListener('keydown', (event) => {
 function changePage(step) {
   currentPage += step;
   
-  if (currentPage < 0) {
-    currentPage = 0;
+  if (currentPage < 1) {
+    currentPage = 1;
     return;
   }
   
@@ -27,8 +27,8 @@ function changePage(step) {
     return;
   }
   
-  const newPageElement = document.getElementById(`page-${currentPage}`);
-  const oldPageElement = document.querySelector('.page:not([style*="display: none"])');
+  const newPageElement = document.getElementById(`book-spread-${currentPage}`);
+  const oldPageElement = document.querySelector('.book-spread:not([style*="display: none"])');
 
   if (newPageElement) {
     if (oldPageElement) {

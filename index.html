@@ -11,17 +11,23 @@
 
 <div id="book-container">
   <div id="book">
-    <div class="page" id="page-0"><img src="page0.png" alt="Page 0"></div>
-    <div class="page" id="page-1" style="display:none;"><img src="page1.jpeg" alt="Page 1"></div>
-    <div class="page" id="page-2" style="display:none;"><img src="page2.jpeg" alt="Page 2"></div>
-    <div class="page" id="page-3" style="display:none;"><img src="page3.jpeg" alt="Page 3"></div>
-    <div class="page" id="page-4" style="display:none;"><img src="page4.jpeg" alt="Page 4"></div>
-    <div class="page" id="page-5" style="display:none;"><img src="page5.jpeg" alt="Page 5"></div>
+    <div class="book-spread" id="book-spread-1">
+        <div class="page left-page" id="page-0"><img src="page0.png" alt="Page 0"></div>
+        <div class="page right-page" id="page-1""><img src="page1.jpeg" alt="Page 1"></div>
+      </div>
+      <div class="book-spread" id="book-spread-2" style="display:none;">
+        <div class="page left-page" id="page-2"><img src="page2.jpeg" alt="Page 2"></div>
+        <div class="page right-page" id="page-3"><img src="page3.jpeg" alt="Page 3"></div>
+      </div>
+      <div class="book-spread" id="book-spread-3" style="display:none;">
+        <div class="page left-page" id="page-4"><img src="page4.jpeg" alt="Page 4"></div>
+        <div class="page right-page" id="page-5"><img src="page5.jpeg" alt="Page 5"></div>
+      </div>
   </div>
   
   <div id="page-controls">
     <span id="prev-page" class="page-arrow">&lt;</span>
-    <span id="page-number">Page 0</span>
+    <span id="page-number">Page 1</span>
     <span id="next-page" class="page-arrow">&gt;</span>
   </div>
 </div>
