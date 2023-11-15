@@ -12,7 +12,7 @@ body, html {
   }
   
   #book {
-    width: 457px;
+    width: 559px;
     height: 800px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -62,3 +62,7 @@ body, html {
     font-family: 'Indie Flower', cursive;
   }
   
+  .book-spread {
+    display: flex;
+    justify-content: space-between;
+  }
