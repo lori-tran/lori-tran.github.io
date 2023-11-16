@@ -9,6 +9,7 @@ body, html {
 
 #book-container {
   position: relative;
+  height: 845px;
 }
 
 #book {

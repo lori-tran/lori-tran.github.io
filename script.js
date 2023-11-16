@@ -1,5 +1,5 @@
 let currentSpread = 0;
-const totalSpreads = 6; // Update with the actual number of spreads
+const totalSpreads = 7; // Update with the actual number of spreads
 const book = document.getElementById('book');
 const pageNumberElement = document.getElementById('page-number');
 
