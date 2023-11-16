@@ -1,5 +1,5 @@
-let currentPage = 0;
-const totalPages = 2; // Update with the actual number of pages
+let currentSpread = 0;
+const totalSpreads = 6; // Update with the actual number of spreads
 const book = document.getElementById('book');
 const pageNumberElement = document.getElementById('page-number');
 
@@ -14,35 +14,75 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+var preventTurning = false;
+var preventTurningForwards = false;
+var preventTurningBackwards = false;
 function changePage(step) {
-  currentPage += step;
-  
-  if (currentPage < 0) {
-    currentPage = 0;
+  if ((currentSpread === 0 && step === -1) ||
+      (currentSpread === totalSpreads && step === 1) ||
+      preventTurning ||
+      (preventTurningForwards && step === 1) ||
+      (preventTurningBackwards && step === -1)) {
     return;
   }
-  
-  if (currentPage > totalPages) {
-    currentPage = totalPages;
-    return;
-  }
+  preventTurning = true;
   
   if (step === 1) {
-    let rightPage = document.getElementById(`page-${currentPage * 2 - 1}`);
-    let leftPage = document.getElementById(`page-${currentPage * 2}`);
-    rightPage.style.animationTimingFunction = 'ease-in-out';
-    rightPage.style.animationDuration = '2s';
+    preventTurningBackwards = true;
+    let leftPage = document.getElementById(`page-${currentSpread * 2}`);
+    let rightPage = document.getElementById(`page-${currentSpread * 2 + 1}`);
+    let nextLeftPage = document.getElementById(`page-${currentSpread * 2 + 2}`);
     rightPage.style.animationName = 'flip-right';
     rightPage.style.transformOrigin = 'left';
-    leftPage.style.animationTimingFunction = 'ease-in-out';
-    leftPage.style.animationDuration = '2s';
-    leftPage.style.animationName = 'flip-left';
-    leftPage.style.transformOrigin = 'right';
+    nextLeftPage.style.animationName = 'flip-left';
+    nextLeftPage.style.transformOrigin = 'right';
     setTimeout(() => {
-      rightPage.style.zIndex = 1;
-      leftPage.style.zIndex = 2;
+      rightPage.style.zIndex *= -1;
+      nextLeftPage.style.zIndex = parseInt(nextLeftPage.style.zIndex) + 100;
+      preventTurning = false;
     }, 1000);
+    setTimeout(() => {
+      leftPage.style.zIndex *= -1;
+      nextLeftPage.style.zIndex -= 100;
+      if (!preventTurning) {
+        preventTurningBackwards = false;
+      }
+    }, 2000);
+  } else if (step === -1) {
+    preventTurningForwards = true;
+    let leftPage = document.getElementById(`page-${currentSpread * 2}`);
+    let prevRightPage = document.getElementById(`page-${currentSpread * 2 - 1}`);
+    let prevLeftPage = document.getElementById(`page-${currentSpread * 2 - 2}`);
+    leftPage.style.animationName = 'flip-left-back';
+    leftPage.style.transformOrigin = 'right';
+    prevRightPage.style.animationName = 'flip-right-back';
+    prevRightPage.style.transformOrigin = 'left';
+    leftPage.style.zIndex = parseInt(leftPage.style.zIndex) + 100;
+    prevLeftPage.style.zIndex *= -1;
+    setTimeout(() => {
+      leftPage.style.zIndex -= 100;
+      prevRightPage.style.zIndex *= -1;
+      preventTurning = false;
+    }, 1000);
+    setTimeout(() => {
+      if (!preventTurning) {
+        preventTurningForwards = false;
+      }
+    }, 2000);
   }
 
-  pageNumberElement.textContent = `Page ${currentPage + 1}`;
+  currentSpread += step;
+
+  pageNumberElement.textContent = `Page ${currentSpread + 1}`;
+  
+  if (currentSpread === 0) {
+    document.getElementById('prev-page').style.visibility = 'hidden';
+  } else {
+    document.getElementById('prev-page').style.visibility = 'visible';
+  }
+  if (currentSpread === totalSpreads) {
+    document.getElementById('next-page').style.visibility = 'hidden';
+  } else {
+    document.getElementById('next-page').style.visibility = 'visible';
+  }
 }
