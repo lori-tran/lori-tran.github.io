@@ -86,3 +86,26 @@ function changePage(step) {
     document.getElementById('next-page').style.visibility = 'visible';
   }
 }
+
+
+window.addEventListener('resize', adjustZoom);
+
+function adjustZoom() {
+  const minWidth = 1116;
+  const minHeight = 850;
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  let zoomLevel = 1;
+
+  if (windowWidth < minWidth || windowHeight < minHeight) {
+    const widthRatio = windowWidth / minWidth;
+    const heightRatio = windowHeight / minHeight;
+
+    zoomLevel = Math.min(widthRatio, heightRatio);
+  }
+
+  document.body.style.zoom = zoomLevel;
+}
+
+adjustZoom();
