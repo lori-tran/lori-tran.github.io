@@ -20,6 +20,8 @@ body {
               var(--bg);
 }
 
+html { scroll-behavior: smooth; }
+
 .container {
   width: min(1080px, 92%);
   margin: 0 auto;
@@ -29,18 +31,20 @@ body {
 .site-header {
   position: sticky;
   top: 0; z-index: 100;
+  width: 100%;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(8px);
   border-bottom: 1px dashed #ffd1e6;
 }
-.nav-container { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+.nav-container { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
 .brand {
   font-family: 'Caveat', cursive;
   font-size: 28px;
   color: var(--ink);
   text-decoration: none;
+  white-space: nowrap;
 }
-.nav { display: flex; gap: 18px; }
+.nav { display: flex; gap: 18px; align-items: center; }
 .nav-link {
   text-decoration: none;
   color: var(--ink);
@@ -51,7 +55,7 @@ body {
 .nav-toggle { display: none; background: none; border: none; font-size: 22px; }
 
 /* Hero */
-.section { padding: 72px 0; }
+.section { padding: 72px 0; scroll-margin-top: 80px; }
 .hero { padding-top: 48px; }
 .hero-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center; }
 .hero-kicker { font-family: 'Caveat', cursive; font-size: 22px; color: var(--accent); }
@@ -74,6 +78,7 @@ body {
   padding: 10px 10px 18px;
   box-shadow: 0 10px 20px rgba(0,0,0,.08);
   border: 1px solid #f3f3f3;
+  position: relative;
 }
 .polaroid img { width: 100%; height: auto; display: block; border-radius: 6px; }
 .polaroid .caption { text-align: center; font-family: 'Caveat', cursive; margin: 8px 0 0; color: #5c5666; }
@@ -133,119 +138,4 @@ input, textarea {
   .grid { grid-template-columns: 1fr; }
 }
 
-html {
-  overflow: hidden;
-}
-
-body, html {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f0f0;
-}
-
-#book-container {
-  position: relative;
-  height: 850px;
-}
-
-#book {
-  width: 1116px;
-  height: 799px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.page {
-  width: 50%;
-  position: absolute;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes flip-right {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(180deg);
-  }
-}
-
-@keyframes flip-left {
-  0% {
-    transform: rotateY(-180deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  }
-}
-
-@keyframes flip-right-back {
-  0% {
-    transform: rotateY(180deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  }
-}
-
-@keyframes flip-left-back {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(-180deg);
-  }
-}
-
-.page img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-}
-
-#page-controls {
-  position: absolute;
-  width: 100%;
-  top: 810px;
-  text-align: center;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.page-arrow {
-  cursor: pointer;
-  font-size: 24px;
-  user-select: none;
-}
-
-#prev-page {
-  float: left;
-  margin-left: 16px;
-  font-family: 'Indie Flower', cursive;
-}
-
-#next-page {
-  float: right;
-  margin-right: 16px;
-  font-family: 'Indie Flower', cursive;
-}
-
-#page-number {
-  font-size: 24px;
-  font-family: 'Indie Flower', cursive;
-}
-
-.book-spread {
-  display: flex;
-  justify-content: space-between;
-}
-
-.right-page {
-  left: 558px;
-}
+/* removed legacy Twinkle book styles from root; they live in /twinkle/styles.css */
