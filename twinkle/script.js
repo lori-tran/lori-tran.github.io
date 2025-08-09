@@ -1,188 +1,111 @@
-class BookViewer {
-  constructor() {
-    this.currentSpread = 0;
-    this.totalSpreads = 8;
-    this.isAnimating = false;
-    this.book = document.getElementById('book');
-    this.pageNumberElement = document.getElementById('page-number');
-    
-    this.init();
+let currentSpread = 0;
+const totalSpreads = 8; // Update with the actual number of spreads
+const book = document.getElementById('book');
+const pageNumberElement = document.getElementById('page-number');
+
+document.getElementById('prev-page').addEventListener('click', () => changePage(-1));
+document.getElementById('next-page').addEventListener('click', () => changePage(1));
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') {
+    changePage(-1);
+  } else if (event.key === 'ArrowRight') {
+    changePage(1);
   }
-  
-  init() {
-    // Set up initial page positions
-    this.setupInitialPageStates();
-    
-    // Event listeners
-    document.getElementById('prev-page').addEventListener('click', () => this.changePage(-1));
-    document.getElementById('next-page').addEventListener('click', () => this.changePage(1));
-    
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') {
-        this.changePage(-1);
-      } else if (event.key === 'ArrowRight') {
-        this.changePage(1);
-      }
-    });
-    
-    // Resize handler
-    window.addEventListener('resize', () => this.adjustZoom());
-    this.adjustZoom();
-    
-    // Update initial UI
-    this.updateUI();
+});
+
+var preventTurning = false;
+var preventTurningForwards = false;
+var preventTurningBackwards = false;
+function changePage(step) {
+  if ((currentSpread === 0 && step === -1) ||
+      (currentSpread === totalSpreads && step === 1) ||
+      preventTurning ||
+      (preventTurningForwards && step === 1) ||
+      (preventTurningBackwards && step === -1)) {
+    return;
   }
+  preventTurning = true;
   
-  setupInitialPageStates() {
-    for (let i = 0; i <= this.totalSpreads * 2 + 1; i++) {
-      const page = document.getElementById(`page-${i}`);
-      if (page) {
-        page.classList.remove('flip-right', 'flip-left', 'flip-right-back', 'flip-left-back', 'flip-left-initial');
-        
-        // Set initial z-index based on spread position
-        const spread = Math.floor(i / 2);
-        page.style.zIndex = this.totalSpreads - spread;
-        
-        // Hide pages that should be flipped initially
-        if (i > 1) {
-          if (i % 2 === 0) {
-            // Left pages after first spread should be hidden behind
-            page.style.zIndex = -(this.totalSpreads - spread);
-          } else {
-            // Right pages after first spread start flipped
-            page.classList.add('flip-left-initial');
-          }
-        }
-      }
-    }
-  }
-  
-  changePage(direction) {
-    if (this.isAnimating) return;
-    
-    const newSpread = this.currentSpread + direction;
-    if (newSpread < 0 || newSpread > this.totalSpreads) return;
-    
-    this.isAnimating = true;
-    
-    if (direction === 1) {
-      this.turnPageForward();
-    } else {
-      this.turnPageBackward();
-    }
-    
-    this.currentSpread = newSpread;
-    
-    // Animation complete after transition duration
+  if (step === 1) {
+    preventTurningBackwards = true;
+    let leftPage = document.getElementById(`page-${currentSpread * 2}`);
+    let rightPage = document.getElementById(`page-${currentSpread * 2 + 1}`);
+    let nextLeftPage = document.getElementById(`page-${currentSpread * 2 + 2}`);
+    rightPage.style.animationName = 'flip-right';
+    rightPage.style.transformOrigin = 'left';
+    nextLeftPage.style.animationName = 'flip-left';
+    nextLeftPage.style.transformOrigin = 'right';
     setTimeout(() => {
-      this.isAnimating = false;
-      this.updateZIndices();
-    }, 800);
-    
-    this.updateUI();
-  }
-  
-  turnPageForward() {
-    const currentLeftPage = document.getElementById(`page-${this.currentSpread * 2}`);
-    const currentRightPage = document.getElementById(`page-${this.currentSpread * 2 + 1}`);
-    const nextLeftPage = document.getElementById(`page-${this.currentSpread * 2 + 2}`);
-    
-    if (currentRightPage) {
-      currentRightPage.classList.add('flipping', 'flip-right');
-    }
-    
-    if (nextLeftPage) {
-      nextLeftPage.classList.remove('flip-left-initial');
-      nextLeftPage.classList.add('flipping', 'flip-left');
-    }
-    
-    // Clean up classes after animation
+      rightPage.style.zIndex *= -1;
+      nextLeftPage.style.zIndex = parseInt(nextLeftPage.style.zIndex) + 100;
+      preventTurning = false;
+    }, 1000);
     setTimeout(() => {
-      if (currentRightPage) {
-        currentRightPage.classList.remove('flipping');
+      leftPage.style.zIndex *= -1;
+      nextLeftPage.style.zIndex -= 100;
+      if (!preventTurning) {
+        preventTurningBackwards = false;
       }
-      if (nextLeftPage) {
-        nextLeftPage.classList.remove('flipping');
-      }
-    }, 800);
-  }
-  
-  turnPageBackward() {
-    const currentLeftPage = document.getElementById(`page-${this.currentSpread * 2}`);
-    const prevRightPage = document.getElementById(`page-${this.currentSpread * 2 - 1}`);
-    
-    if (currentLeftPage) {
-      currentLeftPage.classList.add('flipping', 'flip-left-back');
-    }
-    
-    if (prevRightPage) {
-      prevRightPage.classList.remove('flip-right');
-      prevRightPage.classList.add('flipping', 'flip-right-back');
-    }
-    
-    // Clean up classes after animation
+    }, 2000);
+  } else if (step === -1) {
+    preventTurningForwards = true;
+    let leftPage = document.getElementById(`page-${currentSpread * 2}`);
+    let prevRightPage = document.getElementById(`page-${currentSpread * 2 - 1}`);
+    let prevLeftPage = document.getElementById(`page-${currentSpread * 2 - 2}`);
+    leftPage.style.animationName = 'flip-left-back';
+    leftPage.style.transformOrigin = 'right';
+    prevRightPage.style.animationName = 'flip-right-back';
+    prevRightPage.style.transformOrigin = 'left';
+    leftPage.style.zIndex = parseInt(leftPage.style.zIndex) + 100;
+    prevLeftPage.style.zIndex *= -1;
     setTimeout(() => {
-      if (currentLeftPage) {
-        currentLeftPage.classList.remove('flipping');
-        currentLeftPage.classList.add('flip-left-initial');
+      leftPage.style.zIndex -= 100;
+      prevRightPage.style.zIndex *= -1;
+      preventTurning = false;
+    }, 1000);
+    setTimeout(() => {
+      if (!preventTurning) {
+        preventTurningForwards = false;
       }
-      if (prevRightPage) {
-        prevRightPage.classList.remove('flipping', 'flip-right-back');
-      }
-    }, 800);
+    }, 2000);
   }
+
+  currentSpread += step;
+
+  pageNumberElement.textContent = `Page ${currentSpread + 1}`;
   
-  updateZIndices() {
-    // Ensure proper stacking order after animation
-    for (let i = 0; i <= this.totalSpreads * 2 + 1; i++) {
-      const page = document.getElementById(`page-${i}`);
-      if (page) {
-        const spread = Math.floor(i / 2);
-        if (spread <= this.currentSpread) {
-          if (i % 2 === 0) {
-            // Left pages that have been turned
-            page.style.zIndex = -(this.totalSpreads - spread);
-          } else {
-            // Right pages that have been turned
-            page.style.zIndex = -(this.totalSpreads - spread);
-          }
-        } else {
-          // Pages that haven't been reached yet
-          page.style.zIndex = this.totalSpreads - spread;
-        }
-      }
-    }
+  if (currentSpread === 0) {
+    document.getElementById('prev-page').style.visibility = 'hidden';
+  } else {
+    document.getElementById('prev-page').style.visibility = 'visible';
   }
-  
-  updateUI() {
-    this.pageNumberElement.textContent = `Page ${this.currentSpread + 1}`;
-    
-    const prevButton = document.getElementById('prev-page');
-    const nextButton = document.getElementById('next-page');
-    
-    prevButton.style.visibility = this.currentSpread === 0 ? 'hidden' : 'visible';
-    nextButton.style.visibility = this.currentSpread === this.totalSpreads ? 'hidden' : 'visible';
-  }
-  
-  adjustZoom() {
-    const minWidth = 1116;
-    const minHeight = 850;
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    
-    let zoomLevel = 1;
-    
-    if (windowWidth < minWidth || windowHeight < minHeight) {
-      const widthRatio = windowWidth / minWidth;
-      const heightRatio = windowHeight / minHeight;
-      zoomLevel = Math.min(widthRatio, heightRatio);
-    }
-    
-    document.body.style.zoom = zoomLevel;
+  if (currentSpread === totalSpreads) {
+    document.getElementById('next-page').style.visibility = 'hidden';
+  } else {
+    document.getElementById('next-page').style.visibility = 'visible';
   }
 }
 
-// Initialize the book viewer when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  new BookViewer();
-});
+
+window.addEventListener('resize', adjustZoom);
+
+function adjustZoom() {
+  const minWidth = 1116;
+  const minHeight = 850;
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+
+  let zoomLevel = 1;
+
+  if (windowWidth < minWidth || windowHeight < minHeight) {
+    const widthRatio = windowWidth / minWidth;
+    const heightRatio = windowHeight / minHeight;
+
+    zoomLevel = Math.min(widthRatio, heightRatio);
+  }
+
+  document.body.style.zoom = zoomLevel;
+}
+
+adjustZoom();
