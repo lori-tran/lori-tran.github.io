@@ -1,0 +1,116 @@
+html {
+  overflow: hidden;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+#book-container {
+  position: relative;
+  height: 850px;
+}
+
+#book {
+  width: 1116px;
+  height: 799px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.page {
+  width: 50%;
+  position: absolute;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes flip-right {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes flip-left {
+  0% {
+    transform: rotateY(-180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes flip-right-back {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes flip-left-back {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
+.page img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+#page-controls {
+  position: absolute;
+  width: 100%;
+  top: 810px;
+  text-align: center;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.page-arrow {
+  cursor: pointer;
+  font-size: 24px;
+  user-select: none;
+}
+
+#prev-page {
+  float: left;
+  margin-left: 16px;
+  font-family: 'Indie Flower', cursive;
+}
+
+#next-page {
+  float: right;
+  margin-right: 16px;
+  font-family: 'Indie Flower', cursive;
+}
+
+#page-number {
+  font-size: 24px;
+  font-family: 'Indie Flower', cursive;
+}
+
+.book-spread {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-page {
+  left: 558px;
+}

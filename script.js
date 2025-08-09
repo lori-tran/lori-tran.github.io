@@ -1,111 +1,55 @@
-let currentSpread = 0;
-const totalSpreads = 8; // Update with the actual number of spreads
-const book = document.getElementById('book');
-const pageNumberElement = document.getElementById('page-number');
+// Navigation active state + mobile toggle
+(function () {
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  const links = Array.from(document.querySelectorAll('.nav-link'));
 
-document.getElementById('prev-page').addEventListener('click', () => changePage(-1));
-document.getElementById('next-page').addEventListener('click', () => changePage(1));
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowLeft') {
-    changePage(-1);
-  } else if (event.key === 'ArrowRight') {
-    changePage(1);
-  }
-});
-
-var preventTurning = false;
-var preventTurningForwards = false;
-var preventTurningBackwards = false;
-function changePage(step) {
-  if ((currentSpread === 0 && step === -1) ||
-      (currentSpread === totalSpreads && step === 1) ||
-      preventTurning ||
-      (preventTurningForwards && step === 1) ||
-      (preventTurningBackwards && step === -1)) {
-    return;
-  }
-  preventTurning = true;
-  
-  if (step === 1) {
-    preventTurningBackwards = true;
-    let leftPage = document.getElementById(`page-${currentSpread * 2}`);
-    let rightPage = document.getElementById(`page-${currentSpread * 2 + 1}`);
-    let nextLeftPage = document.getElementById(`page-${currentSpread * 2 + 2}`);
-    rightPage.style.animationName = 'flip-right';
-    rightPage.style.transformOrigin = 'left';
-    nextLeftPage.style.animationName = 'flip-left';
-    nextLeftPage.style.transformOrigin = 'right';
-    setTimeout(() => {
-      rightPage.style.zIndex *= -1;
-      nextLeftPage.style.zIndex = parseInt(nextLeftPage.style.zIndex) + 100;
-      preventTurning = false;
-    }, 1000);
-    setTimeout(() => {
-      leftPage.style.zIndex *= -1;
-      nextLeftPage.style.zIndex -= 100;
-      if (!preventTurning) {
-        preventTurningBackwards = false;
-      }
-    }, 2000);
-  } else if (step === -1) {
-    preventTurningForwards = true;
-    let leftPage = document.getElementById(`page-${currentSpread * 2}`);
-    let prevRightPage = document.getElementById(`page-${currentSpread * 2 - 1}`);
-    let prevLeftPage = document.getElementById(`page-${currentSpread * 2 - 2}`);
-    leftPage.style.animationName = 'flip-left-back';
-    leftPage.style.transformOrigin = 'right';
-    prevRightPage.style.animationName = 'flip-right-back';
-    prevRightPage.style.transformOrigin = 'left';
-    leftPage.style.zIndex = parseInt(leftPage.style.zIndex) + 100;
-    prevLeftPage.style.zIndex *= -1;
-    setTimeout(() => {
-      leftPage.style.zIndex -= 100;
-      prevRightPage.style.zIndex *= -1;
-      preventTurning = false;
-    }, 1000);
-    setTimeout(() => {
-      if (!preventTurning) {
-        preventTurningForwards = false;
-      }
-    }, 2000);
+  // Toggle menu on mobile
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
   }
 
-  currentSpread += step;
+  // Close menu after click (mobile)
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+    });
+  });
 
-  pageNumberElement.textContent = `Page ${currentSpread + 1}`;
-  
-  if (currentSpread === 0) {
-    document.getElementById('prev-page').style.visibility = 'hidden';
-  } else {
-    document.getElementById('prev-page').style.visibility = 'visible';
+  // Scroll spy (simple)
+  const sections = links
+    .map((a) => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  function onScroll() {
+    const y = window.scrollY + 120;
+    let active = links[0];
+    sections.forEach((sec, i) => {
+      if (sec.offsetTop <= y) active = links[i];
+    });
+    links.forEach((l) => l.classList.remove('active'));
+    active && active.classList.add('active');
   }
-  if (currentSpread === totalSpreads) {
-    document.getElementById('next-page').style.visibility = 'hidden';
-  } else {
-    document.getElementById('next-page').style.visibility = 'visible';
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Footer year
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  // Fake contact form submit
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = data.get('name');
+      alert(`Thanks, ${name}! Your message has been sent (demo).`);
+      form.reset();
+    });
   }
-}
+})();
 
 
-window.addEventListener('resize', adjustZoom);
-
-function adjustZoom() {
-  const minWidth = 1116;
-  const minHeight = 850;
-  const windowWidth = window.innerWidth;
-  const windowHeight = window.innerHeight;
-
-  let zoomLevel = 1;
-
-  if (windowWidth < minWidth || windowHeight < minHeight) {
-    const widthRatio = windowWidth / minWidth;
-    const heightRatio = windowHeight / minHeight;
-
-    zoomLevel = Math.min(widthRatio, heightRatio);
-  }
-
-  document.body.style.zoom = zoomLevel;
-}
-
-adjustZoom();

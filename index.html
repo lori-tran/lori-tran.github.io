@@ -1,43 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Twinkle</title>
-<link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lori Tran • Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <a href="#home" class="brand">Lori Tran</a>
+        <nav class="nav" id="nav">
+          <a href="#home" class="nav-link active">Home</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#about" class="nav-link">About Me</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </header>
 
-<div id="book-container">
-  <div id="book">
-      <div class="page left-page" id="page-0" style="z-index: 8;"><img src="page0.png"></div>
-      <div class="page right-page" id="page-1" style="z-index: 8;"><img src="page1.png"></div>
-      <div class="page left-page" id="page-2" style="z-index: 7;"><img src="page2.jpeg"></div>
-      <div class="page right-page" id="page-3" style="z-index: 7;"><img src="page3.jpeg"></div>
-      <div class="page left-page" id="page-4" style="z-index: 6;"><img src="page4.jpeg"></div>
-      <div class="page right-page" id="page-5" style="z-index: 6;"><img src="page5.jpeg"></div>
-      <div class="page left-page" id="page-6" style="z-index: 5;"><img src="page6.jpeg"></div>
-      <div class="page right-page" id="page-7" style="z-index: 5;"><img src="page7.jpeg"></div>
-      <div class="page left-page" id="page-8" style="z-index: 4;"><img src="page8.jpeg"></div>
-      <div class="page right-page" id="page-9" style="z-index: 4;"><img src="page9.jpeg"></div>
-      <div class="page left-page" id="page-10" style="z-index: 3;"><img src="page10.jpeg"></div>
-      <div class="page right-page" id="page-11" style="z-index: 3;"><img src="page11.jpeg"></div>
-      <div class="page left-page" id="page-12" style="z-index: 2;"><img src="page12.jpeg"></div>
-      <div class="page right-page" id="page-13" style="z-index: 2;"><img src="page13.jpeg"></div>
-      <div class="page left-page" id="page-14" style="z-index: 1;"><img src="page14.jpeg"></div>
-      <div class="page right-page" id="page-15" style="z-index: 1;"><img src="page15.jpeg"></div>
-      <div class="page left-page" id="page-16" style="z-index: 0;"><img src="page16.jpeg"></div>
-      <div class="page right-page" id="page-17" style="z-index: 0;"><img src="page17.jpeg"></div>
-  </div>
-  
-  <div id="page-controls">
-    <span id="prev-page" class="page-arrow" style="visibility: hidden;">&lt;</span>
-    <span id="page-number">Page 1</span>
-    <span id="next-page" class="page-arrow">&gt;</span>
-  </div>
-</div>
+    <main>
+      <section id="home" class="section hero">
+        <div class="container hero-content">
+          <div class="hero-text">
+            <span class="hero-kicker">Portfolio</span>
+            <h1 class="hero-title">Designer, Illustrator, daydreamer ✿</h1>
+            <p class="hero-subtitle">I craft playful, thoughtful visuals and experiences with a sprinkle of magic and lots of care.</p>
+            <div class="hero-cta">
+              <a href="#projects" class="button primary">See Projects</a>
+              <a href="#contact" class="button ghost">Get in touch</a>
+            </div>
+          </div>
+          <div class="hero-collage">
+            <div class="polaroid tilt-left">
+              <span class="tape tape-top"></span>
+              <img src="https://picsum.photos/seed/scrap1/600/400" alt="Collage sample 1" />
+              <p class="caption">moodboard</p>
+            </div>
+            <div class="polaroid tilt-right">
+              <span class="tape tape-corner"></span>
+              <img src="https://picsum.photos/seed/scrap2/600/700" alt="Collage sample 2" />
+              <p class="caption">sketches</p>
+            </div>
+            <div class="polaroid">
+              <span class="tape tape-top"></span>
+              <img src="https://picsum.photos/seed/scrap3/600/500" alt="Collage sample 3" />
+              <p class="caption">work in progress</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<script src="script.js"></script>
-</body>
-</html>
+      <section id="projects" class="section projects">
+        <div class="container">
+          <h2 class="section-title">Projects</h2>
+          <p class="section-intro">A peek at recent pieces. Each project blends a cute, creative spirit with a polished finish.</p>
+          <div class="grid">
+            <a class="card polaroid" href="/twinkle/" target="_self" aria-label="Twinkle children’s book">
+              <span class="tape tape-top"></span>
+              <img src="https://picsum.photos/seed/twinkle/800/600" alt="Twinkle project cover" />
+              <div class="card-body">
+                <h3>Twinkle • Children’s Book</h3>
+                <p>Illustrated storybook with page-turn animations.</p>
+              </div>
+            </a>
+
+            <a class="card polaroid" href="#" aria-label="Brand identity">
+              <span class="tape tape-corner"></span>
+              <img src="https://picsum.photos/seed/brand/800/600" alt="Brand identity mockups" />
+              <div class="card-body">
+                <h3>Brand Identity</h3>
+                <p>Soft palettes, hand-drawn accents, and a friendly voice.</p>
+              </div>
+            </a>
+
+            <a class="card polaroid" href="#" aria-label="Packaging design">
+              <span class="tape tape-top"></span>
+              <img src="https://picsum.photos/seed/package/800/600" alt="Packaging design" />
+              <div class="card-body">
+                <h3>Packaging Design</h3>
+                <p>Playful patterns with a professional finish.</p>
+              </div>
+            </a>
+
+            <a class="card polaroid" href="#" aria-label="Web design">
+              <span class="tape tape-top"></span>
+              <img src="https://picsum.photos/seed/web/800/600" alt="Web design mockups" />
+              <div class="card-body">
+                <h3>Web Design</h3>
+                <p>Clean layouts that still feel like a warm hug.</p>
+              </div>
+            </a>
+
+            <a class="card polaroid" href="#" aria-label="Illustration series">
+              <span class="tape tape-corner"></span>
+              <img src="https://picsum.photos/seed/illust/800/600" alt="Illustration series" />
+              <div class="card-body">
+                <h3>Illustration Series</h3>
+                <p>Story-driven art with whimsical details.</p>
+              </div>
+            </a>
+
+            <a class="card polaroid" href="#" aria-label="Social campaign">
+              <span class="tape tape-top"></span>
+              <img src="https://picsum.photos/seed/campaign/800/600" alt="Social media campaign" />
+              <div class="card-body">
+                <h3>Social Campaign</h3>
+                <p>Delightful visuals to spark real engagement.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div class="container about-wrap">
+          <div class="about-card paper">
+            <span class="tape tape-top"></span>
+            <h2 class="section-title">About Me</h2>
+            <p>
+              Hi! I’m Lori — a designer and illustrator who loves turning little ideas into lovable visuals.
+              My work blends <strong>cute, girly, and scrapbook vibes</strong> with a crisp, professional finish.
+            </p>
+            <p>
+              I’m currently open to freelance projects and collaborations. When I’m not drawing, you’ll find me coffee in hand, collecting stickers, and planning the next fun thing.
+            </p>
+            <ul class="chips">
+              <li class="chip">Branding</li>
+              <li class="chip">Illustration</li>
+              <li class="chip">Packaging</li>
+              <li class="chip">Web/UI</li>
+            </ul>
+          </div>
+          <div class="about-portrait polaroid tilt-right">
+            <span class="tape tape-corner"></span>
+            <img src="https://picsum.photos/seed/portrait/700/900" alt="Portrait placeholder" />
+            <p class="caption">hi, it’s me!</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container contact-wrap">
+          <div class="paper contact-card">
+            <span class="tape tape-top"></span>
+            <h2 class="section-title">Contact</h2>
+            <p>Say hello! I’d love to hear about your project.</p>
+            <form id="contactForm" class="form">
+              <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell me a little about it…" required></textarea>
+              </div>
+              <button type="submit" class="button primary">Send</button>
+              <p class="contact-note">Prefer email? <a href="mailto:hello@loritran.design">hello@loritran.design</a></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Lori Tran</span>
+        <div class="footer-links">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Behance">Behance</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+
