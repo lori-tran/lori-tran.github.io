@@ -30,11 +30,14 @@ html { scroll-behavior: smooth; }
 /* Header / Nav */
 .site-header {
   position: sticky;
-  top: 0; z-index: 100;
+  top: 0;
+  z-index: 1000;
   width: 100%;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px dashed #ffd1e6;
+  box-shadow: 0 2px 20px rgba(255, 126, 184, 0.1);
 }
 .nav-container { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
 .brand {
