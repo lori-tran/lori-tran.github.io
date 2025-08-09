@@ -39,17 +39,7 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // Fake contact form submit
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const name = data.get('name');
-      alert(`Thanks, ${name}! Your message has been sent (demo).`);
-      form.reset();
-    });
-  }
+  // Contact form removed - using simple contact info instead
 })();
 
 
