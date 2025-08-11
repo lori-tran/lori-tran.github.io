@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Van Leeuwen Ad • Lori Tran</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      /* Disable home page scroll snapping and full-height sections on this page */
+      html, body { scroll-snap-type: none; }
+      .section { min-height: auto; scroll-snap-align: unset; scroll-snap-stop: unset; padding: 40px 0; }
+
+      .backbar { padding: 10px 0; }
+      .backlink { text-decoration: none; color: var(--ink); padding: 8px 12px; border: 1px dashed #ffd1e6; border-radius: 999px; background: #fff; font-weight: 500; }
+      .featured { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center; }
+      .featured video { width: 100%; height: auto; border-radius: 10px; display: block; box-shadow: 0 10px 20px rgba(0,0,0,.08); }
+      .meta .chips { margin-top: 12px; }
+      .process .grid video { width: 100%; height: auto; border-radius: 8px; display: block; }
+      .process .caption { margin-top: 8px; }
+      @media (max-width: 980px) { .featured { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <span class="brand">Lori Tran</span>
+        <!--
+        <div class="backbar">
+          <a class="backlink" href="../index.html#projects">← Back to Projects</a>
+        </div>
+        -->
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container featured">
+          <div>
+            <div class="polaroid">
+              <span class="tape tape-top"></span>
+              <video src="./ad.mov" controls playsinline preload="metadata" poster="" aria-label="Van Leeuwen video advertisement"></video>
+              <p class="caption">Van Leeuwen • Video Advertisement</p>
+            </div>
+          </div>
+          <div class="meta">
+            <span class="hero-kicker">Ad + Ideation</span>
+            <h1 class="hero-title">Van Leeuwen</h1>
+            <p class="hero-subtitle">A quick ad with clips exploring framing, movement, color, and product storytelling. Shot and edited to feel sweet, playful, and delicious.</p>
+            <ul class="chips">
+              <li class="chip">Concept</li>
+              <li class="chip">Editing</li>
+              <li class="chip">Motion</li>
+            </ul>
+            <div style="margin-top:14px">
+              <a class="button primary" href="./ad.mov" download>Download Ad</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process">
+        <div class="container">
+          <h2 class="section-title">Ideation & Process Clips</h2>
+          <p class="section-intro">Short tests and explorations leading up to the draft ad.</p>
+          <div class="grid">
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./eight-scoops.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Eight Scoops</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./five-pints.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Five Pints</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./pint-up.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Pint Up</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./scooping-stock.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Scooping Stock</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./strawberry.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Strawberry</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./tasty-flashing.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Tasty Flashing</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Lori Tran</span>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+  </html>
+
+
