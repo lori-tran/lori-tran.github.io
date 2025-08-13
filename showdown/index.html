@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Showdown • Lori Tran</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      /* Disable home page scroll snapping and full-height sections on this page */
+      html, body { scroll-snap-type: none; }
+      .section { min-height: auto; scroll-snap-align: unset; scroll-snap-stop: unset; padding: 40px 0; }
+
+      .backbar { padding: 10px 0; }
+      .backlink { text-decoration: none; color: var(--ink); padding: 8px 12px; border: 1px dashed #ffd1e6; border-radius: 999px; background: #fff; font-weight: 500; }
+      .featured { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center; }
+      .featured video { width: 100%; height: auto; border-radius: 10px; display: block; box-shadow: 0 10px 20px rgba(0,0,0,.08); }
+      .meta .chips { margin-top: 12px; }
+      .process .grid video { width: 100%; height: auto; border-radius: 8px; display: block; }
+      .process .caption { margin-top: 8px; }
+      
+      /* Hover animations for chips and download button */
+      .chips .chip { 
+        transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+        cursor: default;
+      }
+      .chips .chip:hover { 
+        transform: translateY(-2px) rotate(-0.5deg); 
+        box-shadow: 0 8px 20px rgba(0,0,0,.08);
+        background: #ffe6ef;
+      }
+      
+      .button.primary { 
+        transition: transform .15s ease, box-shadow .2s ease !important; 
+      }
+      .button.primary:hover { 
+        transform: translateY(-2px) rotate(-0.5deg) !important; 
+        box-shadow: 0 12px 30px rgba(255, 126, 184, 0.3) !important;
+      }
+      /* Increase specificity and ensure transform applies for the download button */
+      .meta a.button.primary {
+        display: inline-block !important;
+        position: relative;
+        z-index: 2;
+        pointer-events: auto;
+        will-change: transform;
+        transition: transform .15s ease, box-shadow .2s ease !important;
+      }
+      .meta a.button.primary:hover {
+        transform: translateY(-2px) rotate(-0.5deg) !important;
+        box-shadow: 0 12px 30px rgba(255, 126, 184, 0.3) !important;
+      }
+      .meta a.button.primary:focus-visible {
+        transform: translateY(-2px) rotate(-0.5deg) !important;
+        box-shadow: 0 12px 30px rgba(255, 126, 184, 0.3) !important;
+        outline: none;
+      }
+      /* Prevent :active from overriding hover transform */
+      .meta a.button.primary:active {
+        transform: translateY(-1px) rotate(-0.5deg) !important;
+        box-shadow: 0 10px 26px rgba(255, 126, 184, 0.28) !important;
+      }
+      
+      @media (max-width: 980px) { .featured { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <span class="brand">Lori Tran</span>
+        <!--
+        <div class="backbar">
+          <a class="backlink" href="../index.html#projects">← Back to Projects</a>
+        </div>
+        -->
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="container featured">
+          <div>
+            <div class="polaroid">
+              <span class="tape tape-top"></span>
+              <video src="./ad/final-ad.mp4" controls playsinline preload="metadata" poster="" aria-label="Showdown final video ad"></video>
+              <p class="caption">Showdown • Instagram Reel</p>
+            </div>
+          </div>
+          <div class="meta">
+            <span class="hero-kicker">Campaign Content • Process</span>
+            <h1 class="hero-title">Showdown</h1>
+            <p class="hero-subtitle">Creative exploration for a competition-themed campaign: fast, bold, and energy-forward. This page collects the final ad and the drafts that led there, plus leaderboard, winner, and menu samples.</p>
+            <p style="margin-top: 16px; line-height: 1.6; color: var(--ink-light);">The goal was to communicate hype and clarity, urging players to play during the last week of May. I iterated through copy, pacing, and layout to balance urgency with legibility. I also drafted leaderboard and winner posts, as well as an Indian-themed menu for a special event.</p>
+            <ul class="chips">
+              <li class="chip">Canva</li>
+              <li class="chip">Figma</li>
+            </ul>
+            <div style="margin-top:14px">
+              <a class="button primary" href="./ad/final-ad.mp4" download>Download Ad</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process">
+        <div class="container">
+          <h2 class="section-title">Ad Drafts & Explorations</h2>
+          <p class="section-intro">Iterations on copy, pacing, and framing that led to the final ad.</p>
+          <div class="grid">
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./ad/champion.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Champion</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./ad/chance-to-win-1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Chance to Win 1</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./ad/chance-to-win-2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Chance to Win 2</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./ad/chance-to-win-3.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Chance to Win 3</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./ad/chance-to-win-4.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Chance to Win 4</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./ad/chance-to-win-5.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Chance to Win 5</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./ad/crowned-as-champion.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Crowned as Champion</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./ad/eat-compete-win-socialize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Eat • Compete • Win • Socialize</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./ad/last-week-of-may.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Last Week of May</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./ad/now-or-never-1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Now or Never 1</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./ad/now-or-never-2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Now or Never 2</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./ad/prizes.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Prizes</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process">
+        <div class="container">
+          <h2 class="section-title">Leaderboard Samples</h2>
+          <p class="section-intro">Variants exploring color, hierarchy, and motion for leaderboard moments.</p>
+          <div class="grid">
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./leaderboard/leaderboard-blue-1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Leaderboard • Blue 1</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./leaderboard/leaderboard-blue-2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Leaderboard • Blue 2</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./leaderboard/leaderboard-red.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Leaderboard • Red</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process">
+        <div class="container">
+          <h2 class="section-title">Winner Samples</h2>
+          <p class="section-intro">Celebratory stings for winner announcements.</p>
+          <div class="grid">
+            <div class="polaroid card video-card">
+              <span class="tape tape-top"></span>
+              <video src="./winner/winner-1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Winner 1</p>
+            </div>
+
+            <div class="polaroid card video-card">
+              <span class="tape tape-corner"></span>
+              <video src="./winner/winner-2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <p class="caption">Winner 2</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section process">
+        <div class="container">
+          <h2 class="section-title">Menu</h2>
+          <p class="section-intro">Front and back layouts for the event menu.</p>
+          <div class="grid">
+            <div class="polaroid card">
+              <span class="tape tape-top"></span>
+              <img src="./menu/menu-front.png" alt="Showdown menu front" style="width:100%; height:auto; border-radius:8px; display:block;" />
+              <p class="caption">Menu • Front</p>
+            </div>
+
+            <div class="polaroid card">
+              <span class="tape tape-corner"></span>
+              <img src="./menu/menu-back.png" alt="Showdown menu back" style="width:100%; height:auto; border-radius:8px; display:block;" />
+              <p class="caption">Menu • Back</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Lori Tran</span>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+  </html>
+
+
