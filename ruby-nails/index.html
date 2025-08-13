@@ -3,392 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ruby Nails • Menu & Booking</title>
+    <title>Ruby Nails</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css" />
-    <style>
-      /* Use site style, but this page is a normal scroll page */
-      html, body { scroll-snap-type: none; }
-      .section { min-height: auto; scroll-snap-align: unset; scroll-snap-stop: unset; padding: 40px 0; }
-      .brand { font-size: 28px; }
-      .hero-salon { padding: 28px 0 10px; }
-      .kicker-note { color: var(--muted); font-size: 14px; }
-      .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-      .price-table { width: 100%; border-collapse: collapse; }
-      .price-table th, .price-table td { padding: 10px 12px; border-bottom: 1px dashed #ffd1e6; vertical-align: top; }
-      .price-table th { text-align: left; color: var(--accent); font-weight: 600; font-size: 14px; }
-      .price-table td:last-child { text-align: right; white-space: nowrap; }
-      .subtle { color: var(--muted); font-size: 13px; }
-      .pedis-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-      .pedi-price { color: var(--accent); font-weight: 600; }
-      .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-      .form-grid .full { grid-column: 1 / -1; }
-      .field { display: grid; gap: 6px; }
-      .field label { font-size: 13px; color: var(--muted); }
-      .field input, .field select, .field textarea { padding: 10px 12px; border-radius: 10px; border: 1px dashed #ffd1e6; background: #fff; font: inherit; }
-      .field textarea { min-height: 90px; resize: vertical; }
-      .technicians { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-top: 6px; }
-      .tech { padding: 8px 10px; border: 1px dashed #ffd1e6; border-radius: 999px; background: #fff; text-align: center; cursor: default; }
-      .info-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 18px; }
-      /* Card hover animation (cursor remains default) */
-      .paper { transition: transform .15s ease, box-shadow .2s ease; cursor: default; }
-      .paper:hover { transform: translateY(-4px) rotate(-0.2deg); box-shadow: 0 16px 40px rgba(0,0,0,.10); }
-      /* Contact headers in pink */
-      #contact .paper h3 { color: var(--accent); }
-      @media (max-width: 860px) { .form-grid { grid-template-columns: 1fr; } .info-grid { grid-template-columns: 1fr; } }
-    </style>
   </head>
   <body>
     <header class="site-header">
       <div class="container nav-container">
-        <a href="#top" class="brand">Ruby Nails</a>
-        <nav class="nav" id="nav">
-          <a href="#menu" class="nav-link active">Menu</a>
-          <a href="#pedicures" class="nav-link">Pedicures</a>
-          <a href="#booking" class="nav-link">Book</a>
-          <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+        <a class="brand" href="../index.html">Lori Tran</a>
+        <div class="backbar">
+          <a class="backlink" href="../index.html#projects">← Back to Projects</a>
+        </div>
       </div>
     </header>
 
-    <main id="top">
-      <section class="section hero hero-salon">
-        <div class="container">
-          <span class="hero-kicker">Welcome</span>
-          <h1 class="hero-title">Ruby Nails</h1>
-          <p class="hero-subtitle">Clean, careful, and cute. Treat yourself to beautiful nails and relaxing pedicures.</p>
-          <div class="hero-cta">
-            <a href="#booking" class="button primary">Book an appointment</a>
-          </div>
-          <p class="kicker-note" style="margin-top:10px">Card payments may include a small processing fee. Prices below are base and can vary with length, shape, or design.</p>
-        </div>
-      </section>
-
-      <section id="menu" class="section">
-        <div class="container">
-          <h2 class="section-title">Services Menu</h2>
-
-          <div class="menu-grid">
-            <div class="paper">
-              <span class="tape tape-top"></span>
-              <h3 style="margin-top:0">Nail Enhancements</h3>
-              <table class="price-table" aria-label="Nail enhancements price table">
-                <thead>
-                  <tr>
-                    <th>Service</th>
-                    <th>Full Set</th>
-                    <th>Fill</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Acrylic Nails</td>
-                    <td>$30+</td>
-                    <td>$20+</td>
-                </tr>
-                  <tr>
-                    <td>Acrylic with Gel Color</td>
-                    <td>$40+</td>
-                    <td>$30+</td>
-                  </tr>
-                  <tr>
-                    <td>Ombre</td>
-                    <td>$45+</td>
-                    <td>$35+</td>
-                  </tr>
-                  <tr>
-                    <td>SNS Dip Powder</td>
-                    <td>$35+</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
-                    <td>Pink & White</td>
-                    <td>$50+</td>
-                    <td>$45+</td>
-                  </tr>
-                </tbody>
-              </table>
-              <p class="subtle" style="margin-top:10px">Add-ons: design, chrome, length, special shapes are extra</p>
-            </div>
-
-            <div class="paper">
-              <span class="tape tape-corner"></span>
-              <h3 style="margin-top:0">Manicures & Extras</h3>
-              <table class="price-table" aria-label="Manicure and pedicure price table">
-                <thead>
-                  <tr>
-                    <th>Service</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>Gel Color</td><td>$20+</td></tr>
-                  <tr><td>Gel Manicure</td><td>$30</td></tr>
-                  <tr><td>Manicure</td><td>$17</td></tr>
-                  <tr><td>Mani & Pedi</td><td>$45</td></tr>
-                  <tr><td>Polish Change</td><td>$10+</td></tr>
-                  <tr><td>Cut Down</td><td>$5+</td></tr>
-                  <tr><td>Nail Design</td><td>$5+</td></tr>
-                  <tr><td>Nails or Toes Cut</td><td>$10</td></tr>
-                </tbody>
-              </table>
-              <p class="subtle" style="margin-top:10px">French Tip: +$5</p>
-            </div>
-
-            <div class="paper">
-              <span class="tape tape-top"></span>
-              <h3 style="margin-top:0">Waxing</h3>
-              <table class="price-table" aria-label="Waxing menu">
-                <thead>
-                  <tr>
-                    <th>Area</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>Eyebrows</td><td>$10</td></tr>
-                  <tr><td>Lip</td><td>$7</td></tr>
-                  <tr><td>Chin</td><td>$7+</td></tr>
-                  <tr><td>Full Face</td><td>$30+</td></tr>
-                  <tr><td>Under Arm</td><td>$30+</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="pedicures" class="section">
-        <div class="container">
-          <h2 class="section-title">Pedicures</h2>
-          <p class="section-intro">Relaxing treatments for soft, clean, and polished toes.</p>
-          <div class="pedis-grid">
-            <div class="paper">
-              <span class="tape tape-top"></span>
-              <h3 style="margin-top:0">Spa Pedicure <span class="pedi-price">$28</span></h3>
-              <p>Trimming and shaping of natural toe nails, cuticle grooming, callus removal, file and buffer, lotion massage on feet, and finish with polish application.</p>
-            </div>
-            <div class="paper">
-              <span class="tape tape-corner"></span>
-              <h3 style="margin-top:0">Joy Pedicure <span class="pedi-price">$35</span></h3>
-              <p>Includes all treatments from the Spa Pedicure plus sea salt or sugar scrub with various scents to choose from.</p>
-            </div>
-            <div class="paper">
-              <span class="tape tape-top"></span>
-              <h3 style="margin-top:0">Deluxe Pedicure <span class="pedi-price">$45</span></h3>
-              <p>Includes all treatments from the Joy Pedicure plus mud mask, cooling gel, hot towels, and extra massage.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="booking" class="section">
-        <div class="container">
-          <h2 class="section-title">Book an Appointment</h2>
-          <p class="section-intro">Choose a date, time, service, and technician. We’ll confirm via phone or email.</p>
-          <form id="bookingForm" class="paper" autocomplete="on">
+    <main class="section">
+      <div class="container">
+        <h2 class="section-title">Ruby Nails</h2>
+        <p class="section-intro">Open a resource below.</p>
+        <div class="grid">
+          <a class="card polaroid" href="presentation.pdf" target="_blank" aria-label="Presentation PDF">
             <span class="tape tape-top"></span>
-            <div class="form-grid">
-              <div class="field">
-                <label for="name">Full Name</label>
-                <input id="name" name="name" type="text" required />
-              </div>
-              <div class="field">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" placeholder="(555) 555-5555" required />
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" />
-              </div>
-              <div class="field">
-                <label for="service">Service</label>
-                <select id="service" name="service" required>
-                  <option value="" disabled selected>Select a service</option>
-                  <optgroup label="Nail Enhancements">
-                    <option>Acrylic with Gel - Full Set</option>
-                    <option>Acrylic with Gel - Fill</option>
-                    <option>Ombre - Full Set</option>
-                    <option>Ombre - Fill</option>
-                    <option>SNS Dip Powder</option>
-                    <option>Pink & White - Full Set</option>
-                    <option>Pink & White - Fill</option>
-                  </optgroup>
-                  <optgroup label="Mani & Pedi">
-                    <option>Gel Manicure</option>
-                    <option>Classic Manicure</option>
-                    <option>Spa Pedicure</option>
-                    <option>Joy Pedicure</option>
-                    <option>Deluxe Pedicure</option>
-                    <option>Pedicure + Manicure Combo</option>
-                    <option>Polish Change</option>
-                  </optgroup>
-                  <optgroup label="Waxing">
-                    <option>Eyebrows</option>
-                    <option>Lip</option>
-                    <option>Chin</option>
-                    <option>Full Face</option>
-                    <option>Under Arm</option>
-                  </optgroup>
-                </select>
-              </div>
-              <div class="field">
-                <label for="tech">Technician</label>
-                <select id="tech" name="tech" required>
-                  <option value="" disabled selected>Select a technician</option>
-                  <option>Donna</option>
-                  <option>Henry</option>
-                  <option>Lisa</option>
-                  <option>Lori</option>
-                  <option>Kim</option>
-                  <option>Amy</option>
-                  <option>Tony</option>
-                  <option>Tina</option>
-                  <option>Tommy</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="date">Date</label>
-                <input id="date" name="date" type="date" required />
-              </div>
-              <div class="field">
-                <label for="time">Time</label>
-                <select id="time" name="time" required>
-                  <option value="" disabled selected>Select a time</option>
-                  <option value="09:00">9:00 AM</option>
-                  <option value="09:15">9:15 AM</option>
-                  <option value="09:30">9:30 AM</option>
-                  <option value="09:45">9:45 AM</option>
-                  <option value="10:00">10:00 AM</option>
-                  <option value="10:15">10:15 AM</option>
-                  <option value="10:30">10:30 AM</option>
-                  <option value="10:45">10:45 AM</option>
-                  <option value="11:00">11:00 AM</option>
-                  <option value="11:15">11:15 AM</option>
-                  <option value="11:30">11:30 AM</option>
-                  <option value="11:45">11:45 AM</option>
-                  <option value="12:00">12:00 PM</option>
-                  <option value="12:15">12:15 PM</option>
-                  <option value="12:30">12:30 PM</option>
-                  <option value="12:45">12:45 PM</option>
-                  <option value="13:00">1:00 PM</option>
-                  <option value="13:15">1:15 PM</option>
-                  <option value="13:30">1:30 PM</option>
-                  <option value="13:45">1:45 PM</option>
-                  <option value="14:00">2:00 PM</option>
-                  <option value="14:15">2:15 PM</option>
-                  <option value="14:30">2:30 PM</option>
-                  <option value="14:45">2:45 PM</option>
-                  <option value="15:00">3:00 PM</option>
-                  <option value="15:15">3:15 PM</option>
-                  <option value="15:30">3:30 PM</option>
-                  <option value="15:45">3:45 PM</option>
-                  <option value="16:00">4:00 PM</option>
-                  <option value="16:15">4:15 PM</option>
-                  <option value="16:30">4:30 PM</option>
-                  <option value="16:45">4:45 PM</option>
-                  <option value="17:00">5:00 PM</option>
-                  <option value="17:15">5:15 PM</option>
-                  <option value="17:30">5:30 PM</option>
-                  <option value="17:45">5:45 PM</option>
-                  <option value="18:00">6:00 PM</option>
-                  <option value="18:15">6:15 PM</option>
-                  <option value="18:30">6:30 PM</option>
-                  <option value="18:45">6:45 PM</option>
-                </select>
-              </div>
-              <div class="field full">
-                <label for="notes">Notes (length, shape, design ideas)</label>
-                <textarea id="notes" name="notes" placeholder="Tell us anything we should know"></textarea>
-              </div>
-            </div>
-            <div style="display:flex; gap:10px; margin-top:12px">
-              <button type="submit" class="button primary">Request Booking</button>
-              <button type="reset" class="button ghost">Clear</button>
-            </div>
-            <p class="subtle" style="margin-top:10px">This sends us an email request. A team member will follow up to confirm your appointment.</p>
-          </form>
+            <img src="../thumbnails/ruby-nails-presentation.png" alt="Ruby Nails presentation" />
+            <p class="caption">Presentation</p>
+          </a>
+
+          <a class="card polaroid" href="report.pdf" target="_blank" aria-label="Report PDF">
+            <span class="tape tape-corner"></span>
+            <img src="../thumbnails/ruby-nails-report.png" alt="Ruby Nails report" />
+            <p class="caption">Report</p>
+          </a>
+
+          <a class="card polaroid" href="website.html" target="_self" aria-label="Project Website">
+            <span class="tape tape-top"></span>
+            <img src="../thumbnails/ruby-nails-website.png" alt="Ruby Nails website" />
+            <p class="caption">Website</p>
+          </a>
         </div>
-      </section>
-
-      
-
-      <section id="contact" class="section">
-        <div class="container">
-          <h2 class="section-title">Contact</h2>
-          <div class="info-grid">
-            <div class="paper">
-              <span class="tape tape-top"></span>
-              <h3 style="margin-top:0">Address</h3>
-              <p>1861 Roanoke Rd<br/>Suite B<br/>Lagrange, GA 30240</p>
-            </div>
-            <div class="paper">
-              <span class="tape tape-corner"></span>
-              <h3 style="margin-top:0">Phone</h3>
-              <p><a href="tel:+17068121004">(706) 812-1004</a></p>
-              <h3 style="margin-top:0">Email</h3>
-              <p><a href="mailto:loriitran15@gmail.com">loriitran15@gmail.com</a></p>
-            </div>
-            <div class="paper">
-              <span class="tape tape-corner"></span>
-              <h3 style="margin-top:0">Hours</h3>
-              <p style="margin:0 0 6px"><strong>Monday – Saturday:</strong> 9:00 AM — 7:00 PM</p>
-              <p style="margin:0"><strong>Sunday:</strong> Closed</p>
-            </div>
-            <div class="paper">
-              <span class="tape tape-top"></span>
-              <h3 style="margin-top:0">Convenience</h3>
-              <ul>
-                <li>Walk-ins welcome when available</li>
-                <li>Gift cards available</li>
-                <li>Card payments accepted</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <span>© <span id="year"></span> Ruby Nails</span>
       </div>
-    </footer>
-
-    <script src="../script.js"></script>
-    <script>
-      (function(){
-        const dateInput = document.getElementById('date');
-        if (dateInput) {
-          const today = new Date();
-          const iso = today.toISOString().split('T')[0];
-          dateInput.min = iso;
-        }
-        const form = document.getElementById('bookingForm');
-        if (!form) return;
-        form.addEventListener('submit', function(e){
-          e.preventDefault();
-          const name = document.getElementById('name').value.trim();
-          const phone = document.getElementById('phone').value.trim();
-          const email = document.getElementById('email').value.trim();
-          const service = document.getElementById('service').value;
-          const tech = document.getElementById('tech').value;
-          const date = document.getElementById('date').value;
-          const time = document.getElementById('time').value;
-          const notes = document.getElementById('notes').value.trim();
-          if (!name || !phone || !service || !tech || !date || !time) return;
-          const subject = encodeURIComponent(`Appointment Request • ${name} • ${date} ${time}`);
-          const body = encodeURIComponent(
-            `Name: ${name}\nPhone: ${phone}\nEmail: ${email || '-'}\nService: ${service}\nTechnician: ${tech}\nDate: ${date}\nTime: ${time}\nNotes: ${notes || '-'}\n\nSent from Ruby Nails website.`
-          );
-          const mailto = `mailto:loriitran15@gmail.com?subject=${subject}&body=${body}`;
-          window.location.href = mailto;
-        });
-      })();
-    </script>
+    </main>
   </body>
   </html>
 

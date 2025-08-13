@@ -66,6 +66,7 @@
       
       // Vertical position using single bell curve centered at 50%
       const normalizedY = Math.random();
+      let y;
       const bellValue = bellCurve(normalizedY, 0.5, 0.1);
       
       // Accept flower based on bell curve probability
@@ -80,6 +81,8 @@
       
       flower.style.left = `${x}%`;
       flower.style.top = `${y}%`;
+      flower.dataset.leftPct = String(x);
+      flower.dataset.topPct = String(y);
       flower.style.width = `${size}px`;
       flower.style.height = `${size}px`;
       flower.style.setProperty('--rot', `${Math.random() * 360}deg`);
@@ -105,13 +108,15 @@
       }
       
       flower.innerHTML = `
-        <svg width="${size}" height="${size}" viewBox="0 0 100 100" 
-             style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
-          <g transform="rotate(${rotation} 50 50)">
-            ${petals}
-            <circle cx="50" cy="50" r="12" fill="hsl(${hue - 10}, ${sat}%, ${light - 20}%)"/>
-          </g>
-        </svg>
+        <div class="flower-inner">
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100" 
+               style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+            <g transform="rotate(${rotation} 50 50)">
+              ${petals}
+              <circle cx="50" cy="50" r="12" fill="hsl(${hue - 10}, ${sat}%, ${light - 20}%)"/>
+            </g>
+          </svg>
+        </div>
       `;
       
       field.appendChild(flower);
@@ -120,10 +125,119 @@
     transition.appendChild(field);
   });
 
-  // Make all flowers visible immediately
-  const allFlowers = document.querySelectorAll('.flower');
-  allFlowers.forEach((flower) => {
+  // Cursor proximity interactions
+  const fields = Array.from(document.querySelectorAll('.flower-field'));
+  const flowers = Array.from(document.querySelectorAll('.flower'));
+
+  // Make all flowers visible immediately (kept for possible CSS hooks)
+  flowers.forEach((flower) => {
     flower.classList.add('visible');
   });
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let rafScheduled = false;
+
+  const EFFECT_RADIUS = 50; // px
+  const MAX_PUSH = 50; // px
+  const DWELL_MS = 1000; // ms the cursor must stay near before committing movement
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function updateFlowers() {
+    rafScheduled = false;
+    const now = performance.now();
+    for (let f = 0; f < fields.length; f++) {
+      const field = fields[f];
+      const rect = field.getBoundingClientRect();
+      const children = field.children;
+      for (let i = 0; i < children.length; i++) {
+        const fl = children[i];
+        // Only handle .flower elements
+        if (!fl || !fl.classList || !fl.classList.contains('flower')) continue;
+        const leftPct = parseFloat(fl.dataset.leftPct || '0');
+        const topPct = parseFloat(fl.dataset.topPct || '0');
+        const cx = rect.left + (leftPct / 100) * rect.width;
+        const cy = rect.top + (topPct / 100) * rect.height;
+        const dx = mouseX - cx;
+        const dy = mouseY - cy;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist > 0 && dist < EFFECT_RADIUS) {
+          const strength = 1 - dist / EFFECT_RADIUS;
+          const push = MAX_PUSH * strength;
+          const nx = dx / dist;
+          const ny = dy / dist;
+          const tx = -nx * push; // px
+          const ty = -ny * push; // px
+
+          // Start dwell tracking
+          if (!fl.dataset.proxStart) {
+            fl.dataset.proxStart = String(now);
+            fl.dataset.committed = '0';
+          }
+
+          const proxStart = parseFloat(fl.dataset.proxStart || '0');
+          const elapsed = now - proxStart;
+          const committed = fl.dataset.committed === '1';
+
+          if (!committed && elapsed >= DWELL_MS) {
+            // Commit the new base position without visual snap
+            const deltaLeftPct = (tx / rect.width) * 100;
+            const deltaTopPct = (ty / rect.height) * 100;
+            const newLeftPct = clamp(leftPct + deltaLeftPct, 0, 100);
+            const newTopPct = clamp(topPct + deltaTopPct, 0, 100);
+
+            const prevTransition = fl.style.transition;
+            fl.style.transition = 'none';
+
+            fl.dataset.leftPct = String(newLeftPct);
+            fl.dataset.topPct = String(newTopPct);
+            fl.style.left = `${newLeftPct}%`;
+            fl.style.top = `${newTopPct}%`;
+            fl.style.transform = 'translate3d(0, 0, 0)';
+
+            void fl.offsetWidth; // force reflow to apply instant change
+            fl.style.transition = prevTransition;
+
+            fl.dataset.committed = '1';
+          } else {
+            // Temporary push until dwell threshold reached
+            fl.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+          }
+        } else {
+          // Cursor away: clear temp transform and dwell state
+          fl.style.transform = 'translate3d(0, 0, 0)';
+          delete fl.dataset.proxStart;
+          delete fl.dataset.committed;
+        }
+      }
+    }
+  }
+
+  function requestUpdate() {
+    if (!rafScheduled) {
+      rafScheduled = true;
+      requestAnimationFrame(updateFlowers);
+    }
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    requestUpdate();
+  }, { passive: true });
+
+  // On mouse leave: clear temporary transforms and dwell tracking, but keep any committed positions
+  window.addEventListener('mouseleave', () => {
+    for (let i = 0; i < flowers.length; i++) {
+      const fl = flowers[i];
+      fl.style.transform = 'translate3d(0, 0, 0)';
+      delete fl.dataset.proxStart;
+      delete fl.dataset.committed;
+    }
+  }, { passive: true });
 
 })();

@@ -12,11 +12,10 @@
   <body>
     <header class="site-header">
       <div class="container nav-container">
-        <a href="#home" class="brand">Lori Tran</a>
+        <a href="#about" class="brand">Lori Tran</a>
         <nav class="nav" id="nav">
-          <a href="#home" class="nav-link active">Home</a>
+          <a href="#about" class="nav-link active">About Me</a>
           <a href="#projects" class="nav-link">Projects</a>
-          <a href="#about" class="nav-link">About Me</a>
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
@@ -24,159 +23,108 @@
     </header>
 
     <main>
-      <section id="home" class="section hero">
-        <div class="container hero-content">
-          <div class="hero-text">
-            <span class="hero-kicker">Portfolio</span>
-            <h1 class="hero-title">Designer, Illustrator, daydreamer ✿</h1>
-            <p class="hero-subtitle">I craft playful, thoughtful visuals and experiences with a sprinkle of magic and lots of care.</p>
-            <div class="hero-cta">
-              <a href="#projects" class="button primary">See Projects</a>
-              <a href="#contact" class="button ghost">Get in touch</a>
-            </div>
+      <section id="about" class="section about">
+        <div class="container about-wrap">
+          <div class="about-card paper card">
+            <span class="tape tape-top"></span>
+            <h2 class="section-title">About Me</h2>
+            <p>
+              I'm Lori, an <b><i>aspiring graphic designer</i></b> with a background in data analytics.
+            </p>
+            <p>
+              I create clean, engaging visuals that tell a story and approach every project as an <b><i>opportunity to learn</i></b> and refine my craft.
+            </p>
+            <ul class="chips">
+              <li class="chip">Graphic Design</li>
+              <li class="chip">Motion Graphics</li>
+              <li class="chip">Illustration</li>
+              <li class="chip">UI/UX</li>
+            </ul>
           </div>
-          <div class="hero-collage">
-            <div class="polaroid tilt-left">
-              <span class="tape tape-top"></span>
-              <img src="https://picsum.photos/seed/scrap1/600/400" alt="Collage sample 1" />
-              <p class="caption">moodboard</p>
-            </div>
-            <div class="polaroid tilt-right">
-              <span class="tape tape-corner"></span>
-              <img src="https://picsum.photos/seed/scrap2/600/700" alt="Collage sample 2" />
-              <p class="caption">sketches</p>
-            </div>
-            <div class="polaroid">
-              <span class="tape tape-top"></span>
-              <img src="https://picsum.photos/seed/scrap3/600/500" alt="Collage sample 3" />
-              <p class="caption">work in progress</p>
-            </div>
+          <div class="about-portrait polaroid tilt-right card">
+            <span class="tape tape-corner"></span>
+            <img src="images/profile.png" alt="Portrait of Lori Tran" />
+            <p class="caption">hi, it's me!</p>
           </div>
         </div>
       </section>
 
-      <div class="flower-transition" data-from="home" data-to="projects"></div>
+      <div class="flower-transition" data-from="about" data-to="projects"></div>
 
       <section id="projects" class="section projects">
         <div class="container">
           <h2 class="section-title">Projects</h2>
           <p class="section-intro">A peek at recent pieces. Each project blends a cute, creative spirit with a polished finish.</p>
           <div class="grid">
-            <a class="card polaroid" href="twinkle/index.html" target="_self" aria-label="Twinkle children’s book">
+            <a class="card polaroid" href="showdown/index.html" target="_self" aria-label="Showdown project">
               <span class="tape tape-top"></span>
-              <img src="https://picsum.photos/seed/twinkle/800/600" alt="Twinkle project cover" />
+              <img src="thumbnails/showdown.png" alt="Showdown project thumbnail" />
               <div class="card-body">
-                <h3>Twinkle • Children’s Book</h3>
-                <p>Illustrated storybook with page-turn animations.</p>
+                <h3>Showdown</h3>
+                <p>Event ads, winners, and leaderboards.</p>
               </div>
             </a>
 
-             <a class="card polaroid" href="van-leeuwen/index.html" target="_self" aria-label="Van Leeuwen ad and process">
-               <span class="tape tape-corner"></span>
-               <img src="https://picsum.photos/seed/vanleeuwen/800/600" alt="Van Leeuwen project" />
-               <div class="card-body">
-                 <h3>Van Leeuwen • Ad + Ideation</h3>
-                 <p>Video ad with process clips exploring motion and framing.</p>
-               </div>
-             </a>
-
-            <a class="card polaroid" href="#" aria-label="Brand identity">
+            <a class="card polaroid" href="van-leeuwen/index.html" target="_self" aria-label="Van Leeuwen project">
               <span class="tape tape-corner"></span>
-              <img src="https://picsum.photos/seed/brand/800/600" alt="Brand identity mockups" />
+              <img src="thumbnails/van-leeuwen.png" alt="Van Leeuwen project thumbnail" />
               <div class="card-body">
-                <h3>Brand Identity</h3>
-                <p>Soft palettes, hand-drawn accents, and a friendly voice.</p>
+                <h3>Van Leeuwen</h3>
+                <p>Ad concept and process clips.</p>
               </div>
             </a>
 
-            <a class="card polaroid" href="#" aria-label="Packaging design">
-              <span class="tape tape-top"></span>
-              <img src="https://picsum.photos/seed/package/800/600" alt="Packaging design" />
-              <div class="card-body">
-                <h3>Packaging Design</h3>
-                <p>Playful patterns with a professional finish.</p>
-              </div>
-            </a>
-
-            <a class="card polaroid" href="#" aria-label="Web design">
-              <span class="tape tape-top"></span>
-              <img src="https://picsum.photos/seed/web/800/600" alt="Web design mockups" />
-              <div class="card-body">
-                <h3>Web Design</h3>
-                <p>Clean layouts that still feel like a warm hug.</p>
-              </div>
-            </a>
-
-            <a class="card polaroid" href="#" aria-label="Illustration series">
+            <a class="card polaroid" href="twinkle/index.html" target="_self" aria-label="Twinkle project">
               <span class="tape tape-corner"></span>
-              <img src="https://picsum.photos/seed/illust/800/600" alt="Illustration series" />
+              <img src="thumbnails/twinkle.png" alt="Twinkle project thumbnail" />
               <div class="card-body">
-                <h3>Illustration Series</h3>
-                <p>Story-driven art with whimsical details.</p>
+                <h3>Twinkle</h3>
+                <p>Children’s book illustrations.</p>
               </div>
             </a>
 
-            <a class="card polaroid" href="#" aria-label="Social campaign">
+            <a class="card polaroid" href="ruby-nails/index.html" target="_self" aria-label="Ruby Nails project">
               <span class="tape tape-top"></span>
-              <img src="https://picsum.photos/seed/campaign/800/600" alt="Social media campaign" />
+              <img src="thumbnails/ruby-nails-presentation.png" alt="Ruby Nails project thumbnail" />
               <div class="card-body">
-                <h3>Social Campaign</h3>
-                <p>Delightful visuals to spark real engagement.</p>
+                <h3>Ruby Nails</h3>
+                <p>Branding and service guide.</p>
               </div>
             </a>
           </div>
         </div>
       </section>
 
-      <div class="flower-transition" data-from="projects" data-to="about"></div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
 
-      <section id="about" class="section about">
-        <div class="container about-wrap">
-          <div class="about-card paper">
-            <span class="tape tape-top"></span>
-            <h2 class="section-title">About Me</h2>
-            <p>
-              Hi! I’m Lori — a designer and illustrator who loves turning little ideas into lovable visuals.
-              My work blends <strong>cute, girly, and scrapbook vibes</strong> with a crisp, professional finish.
-            </p>
-            <p>
-              I’m currently open to freelance projects and collaborations. When I’m not drawing, you’ll find me coffee in hand, collecting stickers, and planning the next fun thing.
-            </p>
-            <ul class="chips">
-              <li class="chip">Branding</li>
-              <li class="chip">Illustration</li>
-              <li class="chip">Packaging</li>
-              <li class="chip">Web/UI</li>
-            </ul>
-          </div>
-          <div class="about-portrait polaroid tilt-right">
-            <span class="tape tape-corner"></span>
-            <img src="https://picsum.photos/seed/portrait/700/900" alt="Portrait placeholder" />
-            <p class="caption">hi, it’s me!</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="flower-transition" data-from="about" data-to="contact"></div>
+      <div class="flower-transition" data-from="projects" data-to="contact"></div>
 
       <section id="contact" class="section contact">
-        <div class="container contact-wrap">
-          <div class="paper contact-card">
-            <span class="tape tape-top"></span>
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-info">
-              <div class="contact-item">
-                <h3>Email</h3>
-                <p><a href="mailto:loriitran15@gmail.com">loriitran15@gmail.com</a></p>
-              </div>
-              <div class="contact-item">
-                <h3>Phone</h3>
-                <p><a href="tel:+17063330500">(706) 333-0500</a></p>
-              </div>
-              <div class="contact-item">
-                <h3>LinkedIn</h3>
-                <p><a href="https://www.linkedin.com/in/loritran/" target="_blank" rel="noopener noreferrer">linkedin.com/in/loritran</a></p>
-              </div>
+        <div class="container">
+          <h2 class="section-title">Contact</h2>
+          <div class="info-grid">
+            <div class="paper card">
+              <span class="tape tape-top"></span>
+              <h3 style="margin-top:0">Email</h3>
+              <p><a href="mailto:loriitran15@gmail.com">loriitran15@gmail.com</a></p>
+            </div>
+            <div class="paper card">
+              <span class="tape tape-corner"></span>
+              <h3 style="margin-top:0">Phone</h3>
+              <p><a href="tel:+17063330500">(706) 333-0500</a></p>
+            </div>
+            <div class="paper card">
+              <span class="tape tape-corner"></span>
+              <h3 style="margin-top:0">LinkedIn</h3>
+              <p><a href="https://www.linkedin.com/in/loritran/" target="_blank" rel="noopener noreferrer">linkedin.com/in/loritran</a></p>
+            </div>
+            <div class="paper card">
+              <span class="tape tape-top"></span>
+              <h3 style="margin-top:0">Resume</h3>
+              <p><a href="resume.pdf" target="_blank" rel="noopener noreferrer">View PDF</a></p>
             </div>
           </div>
         </div>
