@@ -138,8 +138,8 @@
   let mouseY = 0;
   let rafScheduled = false;
 
-  const EFFECT_RADIUS = 50; // px
-  const MAX_PUSH = 50; // px
+  const EFFECT_RADIUS = 75; // px
+  const MAX_PUSH = 75; // px
   const DWELL_MS = 1000; // ms the cursor must stay near before committing movement
 
   function clamp(value, min, max) {
